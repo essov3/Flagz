@@ -8,15 +8,13 @@ The **Flagz** library allows you to easily retrieve flag images based on country
 
 To use the **Flagz** library, create an instance of the `Flagz` class by passing a `Context` to its constructor. This initializes the library with the necessary resources.
 
-javaCopy code
-
 `Flagz flagz = new Flagz(context);`
 
 ### Get Flag Bitmap
 
-You can obtain the flag bitmap for a specific country code using the `getFlag` method.
+You can obtain the 64px x 64px flag bitmap for a specific country code using the `getFlag` method.
 
-javaCopy code
+
 ```
 Bitmap flagBitmap = flagz.getFlag("eg"); // Replace "eg" with the desired country code
 ```
@@ -27,12 +25,12 @@ If the country code is not found or invalid, the method returns `null`.
 Here's an example of how to use the library in an Android activity:
 
 ```
-Flagz flagz = new Flagz(this);
-
-Bitmap usFlag = flagz.getFlag("us");
-
-ImageView flagImageView = findViewById(R.id.flagImageView);
-flagImageView.setImageBitmap(usFlag);
+    Flagz flagz = new Flagz(this);
+    
+    Bitmap usFlag = flagz.getFlag("us");
+    
+    ImageView flagImageView = findViewById(R.id.flagImageView);
+    flagImageView.setImageBitmap(usFlag);
 
 ```
 
@@ -116,11 +114,6 @@ flagImageView.setImageBitmap(usFlag);
 | FR   | France                  |
 | GA   | Gabon                   |
 | GB   | United Kingdom           |
-| GB-ENG | England                |
-| GB-NIR | Northern Ireland       |
-| GB-SCT | Scotland               |
-| GB-WLS | Wales                  |
-| GB-ZET | Shetland               |
 | GD   | Grenada                 |
 | GE   | Georgia                 |
 | GF   | French Guiana           |
