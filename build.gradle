@@ -1,14 +1,14 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
+    id 'signing'
 }
 
 android {
-    namespace 'com.essoapps.flagz'
     compileSdk 34
 
     defaultConfig {
         minSdk 23
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -19,17 +19,101 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    // Use the new 'namespace' property instead of the deprecated 'namespace' attribute
+    buildFeatures {
+        // Use the namespace value specified in your source AndroidManifest.xml
+        namespace 'com.essoapps.flagz'
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
+
+    testFixtures {
+        enable = true
+    }
 }
-apply from: rootProject.file('dependencies.gradle')
+
 
 dependencies {
-
-
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+
+
+signing {
+    useGpgCmd()
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.essoapps'
+            artifactId = 'flagz'
+            version = '1.0.1'
+
+            afterEvaluate {
+                from components.release
+            }
+
+            pom {
+                name = 'Flagz'
+                description = 'Android Library for world countries flags'
+                url = 'https://github.com/essov3/FlagzLib' // Add the project URL here
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'essov3'
+                        name = 'Eslam M. Mohamed'
+                        email = 'eslamr123@gmail.com'
+                    }
+                }
+
+                scm {
+                    connection = 'scm:git:git://github.com/essov3/FlagzLib.git'
+                    developerConnection = 'scm:git:ssh://github.com:essov3/FlagzLib.git'
+                    url = 'https://github.com/essov3/FlagzLib.git'
+                }
+            }
+        }
+
+
+
+
+    }
+    repositories {
+        maven {
+            name = 'myrepo'
+            url = "${project.buildDir}/repo"
+        }
+    }
+
+
+    tasks.register('generateRepo', Zip) {
+        def publishTask = tasks.named('publishReleasePublicationToMyrepoRepository')
+        from publishTask.map { it.getRepository().getUrl() }
+        //  into 'mylibrary'
+      //  into 'dist'
+        include '**/*.pom', '**/*.aar', '**/*.aar.sha1', '**/*.aar.md5', '**/*.pom.md5' , '**/*.pom.sha1'
+        archiveFileName.set('mylibrary.zip')
+    }
+
+
+}
+
+

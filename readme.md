@@ -1,8 +1,31 @@
-# Flagz Library
+# Flagz Android Library
 
-The **Flagz** library allows you to easily retrieve flag images based on country codes. It provides a simple and efficient way to access flag sprites from a sprite sheet.
+
+# Flagz
+
+Flagz is a lightweight Android library designed for simplicity and efficiency, allowing you to easily retrieve country flag icons as bitmaps based on country codes. With a size of less than 60 KB, Flagz provides a straightforward solution for integrating country flags into your Android applications. Seamlessly operate as an Android library, fetching flag images in the form of bitmaps, simplifying the process of incorporating visually appealing country flag icons.
+
+## Key Features:
+
+- Lightweight Android library (less than 60 KB)
+- Retrieve country flag icon bitmaps by country code
+- Straightforward and easy to use
+
 
 ## Usage
+
+## Integration
+To integrate the Flagz library into your project, add the following dependency to your app module's build.gradle file:
+
+```groovy
+dependencies {
+// Other dependencies...
+implementation 'com.essoapps:flagz:1.0.1'
+}
+```
+Make sure to replace 1.0.1 with the latest version available.
+
+Now, you can use the library in your Android project to easily display country flag images based on country codes.
 
 ### Initialization
 
@@ -27,10 +50,10 @@ Here's an example of how to use the library in an Android activity:
 ```
     Flagz flagz = new Flagz(this);
     
-    Bitmap usFlag = flagz.getFlag("us");
+    Bitmap egFlag = flagz.getFlag("eg");
     
     ImageView flagImageView = findViewById(R.id.flagImageView);
-    flagImageView.setImageBitmap(usFlag);
+    flagImageView.setImageBitmap(egFlag);
 
 ```
 
@@ -270,8 +293,6 @@ Here's an example of how to use the library in an Android activity:
 | UM   | U.S. Outlying Islands   |
 | UN   | United Nations           |
 | US   | United States           |
-| US-CA| California              |
-| US-TX| Texas                   |
 | UY   | Uruguay                 |
 | UZ   | Uzbekistan              |
 | VA   | Vatican City            |
