@@ -58,7 +58,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.essoapps'
             artifactId = 'flagz'
-            version = '1.0.1'
+            version = '1.0.2'
 
             afterEvaluate {
                 from components.release
@@ -107,10 +107,8 @@ publishing {
     tasks.register('generateRepo', Zip) {
         def publishTask = tasks.named('publishReleasePublicationToMyrepoRepository')
         from publishTask.map { it.getRepository().getUrl() }
-        //  into 'mylibrary'
-      //  into 'dist'
         include '**/*.pom', '**/*.aar', '**/*.aar.sha1', '**/*.aar.md5', '**/*.pom.md5' , '**/*.pom.sha1'
-        archiveFileName.set('mylibrary.zip')
+        archiveFileName.set('flagz-lib.zip')
     }
 
 
