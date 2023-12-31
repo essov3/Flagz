@@ -18,12 +18,11 @@ Flagz is a lightweight Android library designed for simplicity and efficiency, a
 To integrate the Flagz library into your project, add the following dependency to your app module's build.gradle file:
 
 ```groovy
-dependencies {
-// Other dependencies...
-implementation 'com.essoapps:flagz:1.0.1'
-}
+    dependencies {
+        implementation 'com.essoapps:flagz:1.0.2'
+    }
 ```
-Make sure to replace 1.0.1 with the latest version available.
+Make sure to replace 1.0.2 with the latest version available.
 
 Now, you can use the library in your Android project to easily display country flag images based on country codes.
 
@@ -31,7 +30,11 @@ Now, you can use the library in your Android project to easily display country f
 
 To use the **Flagz** library, create an instance of the `Flagz` class by passing a `Context` to its constructor. This initializes the library with the necessary resources.
 
-`Flagz flagz = new Flagz(context);`
+```java
+    // java code
+    Flagz flagz =  Flagz.getInstance(context);
+```
+
 
 ### Get Flag Bitmap
 
@@ -47,13 +50,23 @@ If the country code is not found or invalid, the method returns `null`.
 
 Here's an example of how to use the library in an Android activity:
 
-```
-    Flagz flagz = new Flagz(this);
+```java
+    // java example
+    Flagz flagz =  Flagz.getInstance(context);
     
     Bitmap egFlag = flagz.getFlag("eg");
     
     ImageView flagImageView = findViewById(R.id.flagImageView);
     flagImageView.setImageBitmap(egFlag);
+
+```
+
+```kotlin
+    // kotlin example
+    val flagz = Flagz.getInstance(context)
+
+    val flagImageView: ImageView = findViewById(R.id.flagImageView)
+    flagImageView.setImageBitmap(egFlag)
 
 ```
 
@@ -314,6 +327,16 @@ Here's an example of how to use the library in an Android activity:
 
 ## License
 
-The **Flagz** library is provided under the MIT License. Feel free to use and modify it according to your needs.
+Copyright 2023 Eslam M. Mohamed
 
-**Happy coding!**
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
