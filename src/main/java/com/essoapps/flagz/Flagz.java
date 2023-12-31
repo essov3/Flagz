@@ -20,6 +20,8 @@ public class Flagz {
     private  Bitmap spriteSheet;
     private final int SPRITE_SIZE = 64; // 64 PX
 
+    private final  Map<String, FlagSpritePos> countriesCodesList;
+
     // Public method to get the singleton instance
     public static Flagz getInstance(Context context) {
         if (instance == null) {
@@ -35,6 +37,7 @@ public class Flagz {
 
         spriteSheet = loadBitmapFromAssets(context.getAssets(), SPRITE_SHEET_IMAGE);
 
+        countriesCodesList = getFlagCoordinates();
     }
 
 
@@ -61,7 +64,7 @@ public class Flagz {
 
     public Bitmap getFlag(String countryCode){
 
-        FlagSpritePos pos = getFlagCoordinates().get(countryCode.toLowerCase());
+        FlagSpritePos pos = countriesCodesList.get(countryCode.toLowerCase());
 
         if(pos==null){
             return null;
