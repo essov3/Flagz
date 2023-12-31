@@ -35,14 +35,25 @@ To use the **Flagz** library, create an instance of the `Flagz` class by passing
     Flagz flagz =  Flagz.getInstance(context);
 ```
 
+```kotlin
+    // kotlin code
+    val flagz =  Flagz.getInstance(context)
+```
+
 
 ### Get Flag Bitmap
 
 You can obtain the 64px x 64px flag bitmap for a specific country code using the `getFlag` method.
 
 
+```java
+    // java code
+    Bitmap flagBitmap = flagz.getFlag("eg"); // Replace "eg" with the desired country code
 ```
-Bitmap flagBitmap = flagz.getFlag("eg"); // Replace "eg" with the desired country code
+
+```kotlin
+     // kotlin code
+    val flagBitmap = flagz.getFlag("eg") // Replace "eg" with the desired country code
 ```
 If the country code is not found or invalid, the method returns `null`.
 
@@ -65,8 +76,10 @@ Here's an example of how to use the library in an Android activity:
     // kotlin example
     val flagz = Flagz.getInstance(context)
 
+    val flagBitmap = flagz.getFlag("eg") // Replace "eg" with the desired country code
+
     val flagImageView: ImageView = findViewById(R.id.flagImageView)
-    flagImageView.setImageBitmap(egFlag)
+    flagImageView.setImageBitmap(flagBitmap)
 
 ```
 
