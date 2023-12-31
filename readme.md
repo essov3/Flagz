@@ -19,10 +19,10 @@ To integrate the Flagz library into your project, add the following dependency t
 
 ```groovy
     dependencies {
-        implementation 'com.essoapps:flagz:1.0.2'
+        implementation 'com.essoapps:flagz:1.0.3'
     }
 ```
-Make sure to replace 1.0.2 with the latest version available.
+Make sure to replace 1.0.3 with the latest version available.
 
 Now, you can use the library in your Android project to easily display country flag images based on country codes.
 
