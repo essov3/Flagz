@@ -14,19 +14,28 @@ import java.util.Map;
 
 public class Flagz {
 
+    private static Flagz instance;
+
     public static final String SPRITE_SHEET_IMAGE = "flags_sprites.png";
-
     private  Bitmap spriteSheet;
+    private final int SPRITE_SIZE = 64; // 64 PX
 
-    private final int SPRITE_SIZE = 64;
-    public Flagz(Context context) {
-
+    // Public method to get the singleton instance
+    public static Flagz getInstance(Context context) {
+        if (instance == null) {
+            synchronized (Flagz.class) {
+                if (instance == null) {
+                    instance = new Flagz(context);
+                }
+            }
+        }
+        return instance;
+    }
+    private Flagz(Context context) {
 
         spriteSheet = loadBitmapFromAssets(context.getAssets(), SPRITE_SHEET_IMAGE);
 
     }
-
-
 
 
 
