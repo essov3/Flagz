@@ -6,7 +6,7 @@
 
     <groupId>com.essoapps</groupId>
     <artifactId>flagz</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>aar</packaging>
 
     <name>Flagz</name>
